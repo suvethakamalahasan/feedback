@@ -59,7 +59,11 @@ class Settings(BaseSettings):
     @property
     def cors_origins_list(self) -> List[str]:
         """Returns CORS_ORIGINS as a clean list of strings."""
-        return [origin.strip() for origin in self.CORS_ORIGINS.split(",") if origin.strip()]
+        origins = [origin.strip().rstrip('/') for origin in self.CORS_ORIGINS.split(",") if origin.strip()]
+        netlify_url = "https://chipper-twilight-718163.netlify.app"
+        if netlify_url not in origins:
+            origins.append(netlify_url)
+        return origins
 
     @property
     def upload_path(self) -> Path:
