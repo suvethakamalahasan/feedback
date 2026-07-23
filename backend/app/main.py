@@ -98,11 +98,24 @@ def health_check():
     """Health check endpoint used by uptime monitors / load balancers."""
     return {"status": "healthy"}
 
-@app.get("/tables", tags=["Health"])
-def list_tables():
-    from sqlalchemy import inspect
-    inspector = inspect(engine)
-    return {"tables": inspector.get_table_names(), "db": settings.DB_NAME}
+@app.get("/debug/db", tags=["Health"])
+def debug_db():
+    """Debug endpoint to check which database env vars Railway provides."""
+    import os
+    env_vars = {}
+    for key in ["MYSQLHOST", "MYSQLPORT", "MYSQLUSER", "MYSQLPASSWORD",
+                 "MYSQLDATABASE", "MYSQL_URL", "DATABASE_URL",
+                 "DB_HOST", "DB_USER", "DB_NAME", "MYSQL_DATABASE"]:
+        val = os.environ.get(key)
+        if val and "PASSWORD" in key:
+            env_vars[key] = "***SET***"
+        elif val and "URL" in key:
+            # Mask password in URL
+            env_vars[key] = val[:30] + "..."
+        else:
+            env_vars[key] = val or "NOT SET"
+    env_vars["computed_url"] = settings.SQLALCHEMY_DATABASE_URL[:40] + "..."
+    return env_vars
 
 
 # ---------------------------------------------------------------------
