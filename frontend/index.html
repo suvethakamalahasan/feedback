@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sundae Social | Share Your Scoop</title>
+  <meta name="description" content="Tell us about your visit to the ice cream shop — every scoop of feedback helps us serve you better.">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <!-- Google Fonts: Baloo 2 (display), Nunito Sans (body), JetBrains Mono (utility) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- =================================================================
+       Navigation
+       ================================================================= -->
+  <nav class="ss-navbar">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a class="brand-mark" href="index.html">
+        <span class="brand-scoop">🍦</span> Sundae Social
+      </a>
+      <div class="d-flex gap-1">
+        <a class="nav-link active" href="index.html">Leave Feedback</a>
+        <a class="nav-link" href="admin.html">Admin Dashboard</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =================================================================
+       Hero
+       ================================================================= -->
+  <header class="hero">
+    <div class="container position-relative">
+      <span class="eyebrow">Every scoop counts</span>
+      <h1>How was your visit to the parlor today?</h1>
+      <p class="lead">Two minutes of your time helps our scoopers, our recipes, and our next batch of waffle cones get even better.</p>
+    </div>
+  </header>
+
+  <!-- Signature drip divider -->
+  <svg class="drip-divider" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 L1440,0 L1440,20 C1380,20 1360,55 1320,55 C1280,55 1270,25 1230,25 C1190,25 1180,50 1140,50 C1100,50 1095,15 1050,15 C1005,15 1000,45 955,45 C910,45 905,10 860,10 C815,10 810,40 765,40 C720,40 718,20 675,20 C632,20 628,48 585,48 C542,48 538,18 495,18 C452,18 448,42 405,42 C362,42 360,12 317,12 C274,12 270,38 227,38 C184,38 182,22 139,22 C96,22 92,44 49,44 C24,44 12,32 0,30 Z"></path>
+  </svg>
+
+  <!-- =================================================================
+       Feedback Form
+       ================================================================= -->
+  <main class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-9 col-xl-8">
+        <div class="feedback-card">
+
+          <!-- Success banner shown after successful submission -->
+          <div class="success-banner" id="successBanner" role="alert" aria-live="polite">
+            <span class="scoop-icon">🍨</span>
+            <div>
+              <strong>Thank you! Your feedback has been served.</strong>
+              <div class="small">We've saved your response and our team will take a look. Enjoy your next scoop on us... figuratively!</div>
+            </div>
+          </div>
+
+          <!-- Error banner for submission failures -->
+          <div class="alert alert-danger d-none" id="errorBanner" role="alert"></div>
+
+          <form id="feedbackForm" novalidate>
+
+            <!-- ---------------- Customer Information ---------------- -->
+            <div class="section-heading"><span class="scoop-dot"></span> Customer Information</div>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <label for="customerName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="customerName" name="customer_name" placeholder="e.g. Aarav Sharma" minlength="2" maxlength="150" required>
+                <div class="invalid-feedback">Please enter your name (at least 2 characters).</div>
+              </div>
+              <div class="col-md-6">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+                <div class="invalid-feedback">Please enter a valid email address.</div>
+              </div>
+              <div class="col-md-6">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="e.g. 9876543210" required>
+                <div class="invalid-feedback">Please enter a valid phone number (7-15 digits).</div>
+              </div>
+              <div class="col-md-6">
+                <label for="visitDate" class="form-label">Visit Date</label>
+                <input type="date" class="form-control" id="visitDate" name="visit_date" required>
+                <div class="invalid-feedback">Please select the date of your visit.</div>
+              </div>
+            </div>
+
+            <!-- ---------------- Visit Details ---------------- -->
+            <div class="section-heading"><span class="scoop-dot"></span> Visit Details</div>
+            <div class="row g-3 mb-4">
+              <div class="col-md-8">
+                <label for="flavour" class="form-label">Ice Cream Flavor</label>
+                <select class="form-select" id="flavour" name="flavour" required>
+                  <option value="" selected disabled>Choose the flavor you enjoyed</option>
+                  <option value="Chocolate Fudge">Chocolate Fudge</option>
+                  <option value="Vanilla Bean">Vanilla Bean</option>
+                  <option value="Strawberry Swirl">Strawberry Swirl</option>
+                  <option value="Mango Delight">Mango Delight</option>
+                  <option value="Butterscotch">Butterscotch</option>
+                  <option value="Cookies and Cream">Cookies and Cream</option>
+                  <option value="Pistachio">Pistachio</option>
+                  <option value="Black Currant">Black Currant</option>
+                  <option value="Mint Chocolate Chip">Mint Chocolate Chip</option>
+                  <option value="Red Velvet">Red Velvet</option>
+                  <option value="Coffee Mocha">Coffee Mocha</option>
+                  <option value="Other">Other</option>
+                </select>
+                <div class="invalid-feedback">Please select a flavor.</div>
+              </div>
+            </div>
+
+            <!-- ---------------- Ratings ---------------- -->
+            <div class="section-heading"><span class="scoop-dot"></span> Rate Your Experience</div>
+            <div class="mb-4">
+
+              <div class="rating-row">
+                <span class="rating-label">Taste</span>
+                <div class="star-rating-group" data-rating-name="taste_rating" role="radiogroup" aria-label="Taste rating">
+                  <input type="radio" name="taste_rating" id="taste-5" value="5"><label for="taste-5" title="5 stars">★</label>
+                  <input type="radio" name="taste_rating" id="taste-4" value="4"><label for="taste-4" title="4 stars">★</label>
+                  <input type="radio" name="taste_rating" id="taste-3" value="3"><label for="taste-3" title="3 stars">★</label>
+                  <input type="radio" name="taste_rating" id="taste-2" value="2"><label for="taste-2" title="2 stars">★</label>
+                  <input type="radio" name="taste_rating" id="taste-1" value="1"><label for="taste-1" title="1 star">★</label>
+                </div>
+                <span class="rating-value-text" data-rating-display="taste_rating">Not rated</span>
+              </div>
+
+              <div class="rating-row">
+                <span class="rating-label">Quality</span>
+                <div class="star-rating-group" data-rating-name="quality_rating" role="radiogroup" aria-label="Quality rating">
+                  <input type="radio" name="quality_rating" id="quality-5" value="5"><label for="quality-5" title="5 stars">★</label>
+                  <input type="radio" name="quality_rating" id="quality-4" value="4"><label for="quality-4" title="4 stars">★</label>
+                  <input type="radio" name="quality_rating" id="quality-3" value="3"><label for="quality-3" title="3 stars">★</label>
+                  <input type="radio" name="quality_rating" id="quality-2" value="2"><label for="quality-2" title="2 stars">★</label>
+                  <input type="radio" name="quality_rating" id="quality-1" value="1"><label for="quality-1" title="1 star">★</label>
+                </div>
+                <span class="rating-value-text" data-rating-display="quality_rating">Not rated</span>
+              </div>
+
+              <div class="rating-row">
+                <span class="rating-label">Staff Service</span>
+                <div class="star-rating-group" data-rating-name="staff_rating" role="radiogroup" aria-label="Staff service rating">
+                  <input type="radio" name="staff_rating" id="staff-5" value="5"><label for="staff-5" title="5 stars">★</label>
+                  <input type="radio" name="staff_rating" id="staff-4" value="4"><label for="staff-4" title="4 stars">★</label>
+                  <input type="radio" name="staff_rating" id="staff-3" value="3"><label for="staff-3" title="3 stars">★</label>
+                  <input type="radio" name="staff_rating" id="staff-2" value="2"><label for="staff-2" title="2 stars">★</label>
+                  <input type="radio" name="staff_rating" id="staff-1" value="1"><label for="staff-1" title="1 star">★</label>
+                </div>
+                <span class="rating-value-text" data-rating-display="staff_rating">Not rated</span>
+              </div>
+
+              <div class="rating-row">
+                <span class="rating-label">Cleanliness</span>
+                <div class="star-rating-group" data-rating-name="cleanliness_rating" role="radiogroup" aria-label="Cleanliness rating">
+                  <input type="radio" name="cleanliness_rating" id="clean-5" value="5"><label for="clean-5" title="5 stars">★</label>
+                  <input type="radio" name="cleanliness_rating" id="clean-4" value="4"><label for="clean-4" title="4 stars">★</label>
+                  <input type="radio" name="cleanliness_rating" id="clean-3" value="3"><label for="clean-3" title="3 stars">★</label>
+                  <input type="radio" name="cleanliness_rating" id="clean-2" value="2"><label for="clean-2" title="2 stars">★</label>
+                  <input type="radio" name="cleanliness_rating" id="clean-1" value="1"><label for="clean-1" title="1 star">★</label>
+                </div>
+                <span class="rating-value-text" data-rating-display="cleanliness_rating">Not rated</span>
+              </div>
+
+              <div class="rating-row">
+                <span class="rating-label">Overall Experience</span>
+                <div class="star-rating-group" data-rating-name="overall_rating" role="radiogroup" aria-label="Overall rating">
+                  <input type="radio" name="overall_rating" id="overall-5" value="5"><label for="overall-5" title="5 stars">★</label>
+                  <input type="radio" name="overall_rating" id="overall-4" value="4"><label for="overall-4" title="4 stars">★</label>
+                  <input type="radio" name="overall_rating" id="overall-3" value="3"><label for="overall-3" title="3 stars">★</label>
+                  <input type="radio" name="overall_rating" id="overall-2" value="2"><label for="overall-2" title="2 stars">★</label>
+                  <input type="radio" name="overall_rating" id="overall-1" value="1"><label for="overall-1" title="1 star">★</label>
+                </div>
+                <span class="rating-value-text" data-rating-display="overall_rating">Not rated</span>
+              </div>
+
+              <div class="invalid-feedback d-block text-danger small mt-1 d-none" id="ratingsError">
+                Please provide a rating for every category above.
+              </div>
+            </div>
+
+            <!-- ---------------- Yes/No Questions ---------------- -->
+            <div class="section-heading"><span class="scoop-dot"></span> Just Two More Questions</div>
+            <div class="row g-4 mb-4">
+              <div class="col-md-6">
+                <label class="form-label d-block">Would you visit again?</label>
+                <div class="pill-toggle" role="radiogroup" aria-label="Would you visit again">
+                  <input type="radio" name="visit_again" id="visit-again-yes" value="Yes" required>
+                  <label for="visit-again-yes">Yes</label>
+                  <input type="radio" name="visit_again" id="visit-again-no" value="No">
+                  <label for="visit-again-no">No</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label d-block">Would you recommend us to a friend?</label>
+                <div class="pill-toggle" role="radiogroup" aria-label="Would you recommend us">
+                  <input type="radio" name="recommend_shop" id="recommend-yes" value="Yes" required>
+                  <label for="recommend-yes">Yes</label>
+                  <input type="radio" name="recommend_shop" id="recommend-no" value="No">
+                  <label for="recommend-no">No</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- ---------------- Comments ---------------- -->
+            <div class="section-heading"><span class="scoop-dot"></span> Anything Else?</div>
+            <div class="mb-4">
+              <label for="comments" class="form-label">Comments (optional)</label>
+              <textarea class="form-control" id="comments" name="comments" rows="4" maxlength="2000" placeholder="Tell us what made your visit special, or what we could scoop up better..."></textarea>
+              <div class="form-text-hint mt-1"><span id="commentsCount">0</span>/2000 characters</div>
+            </div>
+
+            <!-- ---------------- Image Upload ---------------- -->
+            <div class="mb-4">
+              <label class="form-label d-block">Add a Photo (optional)</label>
+              <div class="upload-dropzone" id="uploadDropzone">
+                <i class="bi bi-camera fs-3 text-secondary"></i>
+                <div class="fw-bold mt-1">Click to upload or drag a photo here</div>
+                <div class="form-text-hint">JPEG, PNG, WEBP or GIF — up to 5MB</div>
+                <input type="file" id="imageUpload" name="image" accept="image/jpeg,image/png,image/webp,image/gif" class="d-none">
+              </div>
+              <img id="imagePreview" class="upload-preview" alt="Selected feedback photo preview">
+              <div class="invalid-feedback d-block text-danger small mt-1 d-none" id="imageError"></div>
+            </div>
+
+            <!-- ---------------- Actions ---------------- -->
+            <div class="d-flex flex-wrap gap-3 justify-content-end mt-4">
+              <button type="reset" class="btn btn-cone" id="resetBtn">
+                <i class="bi bi-arrow-counterclockwise me-1"></i> Reset
+              </button>
+              <button type="submit" class="btn btn-scoop" id="submitBtn">
+                <span class="submit-label"><i class="bi bi-send-check me-1"></i> Submit Feedback</span>
+                <span class="spinner-border spinner-border-sm d-none" id="submitSpinner" role="status" aria-hidden="true"></span>
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- =================================================================
+       Footer
+       ================================================================= -->
+  <footer class="ss-footer mt-5">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <div>&copy; 2026 Sundae Social Ice Cream Parlor. All scoops reserved.</div>
+      <a href="admin.html"><i class="bi bi-speedometer2 me-1"></i>Staff Admin Dashboard</a>
+    </div>
+  </footer>
+
+  <!-- Bootstrap Bundle (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- App logic -->
+  <script src="js/script.js"></script>
+</body>
+</html>
