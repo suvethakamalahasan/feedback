@@ -27,7 +27,7 @@ class Settings(BaseSettings):
     DB_PORT: int = int(os.getenv("MYSQLPORT", os.getenv("DB_PORT", "3306")))
     DB_USER: str = os.getenv("MYSQLUSER", os.getenv("DB_USER", "root"))
     DB_PASSWORD: str = os.getenv("MYSQLPASSWORD", os.getenv("DB_PASSWORD", ""))
-    DB_NAME: str = os.getenv("MYSQLDATABASE", os.getenv("DB_NAME", "icecream_feedback_db"))
+    DB_NAME: str = os.getenv("MYSQL_DATABASE", os.getenv("MYSQLDATABASE", os.getenv("DB_NAME", "icecream_feedback_db")))
 
     # ---- Application ----
     APP_NAME: str = "Ice Cream Shop Feedback API"
