@@ -98,6 +98,12 @@ def health_check():
     """Health check endpoint used by uptime monitors / load balancers."""
     return {"status": "healthy"}
 
+@app.get("/tables", tags=["Health"])
+def list_tables():
+    from sqlalchemy import inspect
+    inspector = inspect(engine)
+    return {"tables": inspector.get_table_names(), "db": settings.DB_NAME}
+
 
 # ---------------------------------------------------------------------
 # Global exception handlers
