@@ -36,7 +36,7 @@ class Settings(BaseSettings):
     API_PORT: int = 8000
 
     # ---- CORS ----
-    CORS_ORIGINS: str = "http://localhost,http://127.0.0.1:5500"
+    CORS_ORIGINS: str = os.getenv("CORS_ORIGINS", "http://localhost,http://127.0.0.1:5500,https://chipper-twilight-718163.netlify.app")
 
     # ---- File uploads ----
     UPLOAD_DIR: str = "uploads"
