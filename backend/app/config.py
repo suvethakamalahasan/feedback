@@ -23,11 +23,11 @@ class Settings(BaseSettings):
     """Application settings loaded from environment variables / .env file."""
 
     # ---- Database ----
-    DB_HOST: str = "localhost"
-    DB_PORT: int = 3306
-    DB_USER: str = "root"
-    DB_PASSWORD: str = ""
-    DB_NAME: str = "icecream_feedback_db"
+    DB_HOST: str = os.getenv("MYSQLHOST", os.getenv("DB_HOST", "localhost"))
+    DB_PORT: int = int(os.getenv("MYSQLPORT", os.getenv("DB_PORT", "3306")))
+    DB_USER: str = os.getenv("MYSQLUSER", os.getenv("DB_USER", "root"))
+    DB_PASSWORD: str = os.getenv("MYSQLPASSWORD", os.getenv("DB_PASSWORD", ""))
+    DB_NAME: str = os.getenv("MYSQLDATABASE", os.getenv("DB_NAME", "icecream_feedback_db"))
 
     # ---- Application ----
     APP_NAME: str = "Ice Cream Shop Feedback API"
